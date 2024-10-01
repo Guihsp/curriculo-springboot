@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currículo de [[${curriculo.nome}]]</title>
+</head>
+<body style="font-family: Arial, sans-serif;">
+    <main style="max-width: 90%; margin: 20px auto; background-color: #f5f5f5; padding: 20px; border-radius: 10px;">
+        <header>
+            <h1>[[${curriculo.nome}]]</h1>
+            <div style="display: flex; justify-content: space-between;">
+                <p style="height: 100%; margin-right: 10px; font-size: 2rem;">[[${curriculo.profissao}]]</p>
+                <div>
+                    <p>[[${curriculo.email}]]</p>
+                    <p>[[${curriculo.telefone}]]</p>
+                    <p>[[${curriculo.endereco}]]</p>
+                </div>
+            </div>
+        </header>
+
+        <section style="margin-top: 20px;">
+            <h2>Resumo</h2>
+            <p>[[${curriculo.resumo}]]</p>
+        </section>
+
+        <section>
+            <h2>Tecnologias</h2>
+            <ul style="display: flex; flex-wrap: wrap; list-style: none; gap: 10px;">
+                <li th:each="tecnologia : ${curriculo.tecnologias}">
+                    [[${tecnologia.nome}]]
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Projetos</h2>
+            <ul style="list-style: none;">
+                <li th:each="projeto : ${curriculo.projetos}">
+                    <h3>[[${projeto.nome}]]</h3>
+                    <p>[[${projeto.descricao}]]</p>
+                    <div>
+                        <span style="margin-right: 10px;">
+                            <a th:href="${projeto.urlDeploy}" target="_blank">Deploy</a>
+                        </span>
+                        <span>
+                            <a th:href="${projeto.urlRepositorio}" target="_blank">Repositório</a>
+                        </span>
+                    </div>
+                <li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Formação</h2>
+            <ul style="list-style: none;">
+                <li th:each="formacao : ${curriculo.formacao}">
+                    <h3>[[${formacao.curso}]]</h3>
+                    <p>[[${formacao.instituicao}]]</p>
+                    <p>[[${formacao.descricao}]]</p>
+                    <p>[[${formacao.periodo}]]</p>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Idiomas</h2>
+            <ul style="list-style: none;">
+                <li th:each="idioma : ${curriculo.idiomas}">
+                    <h3>[[${idioma.nome}]]</h3>
+                    <p>[[${idioma.nivel}]]</p>
+                </li>
+        </section>
+    </main>
+</body>
+</html>
